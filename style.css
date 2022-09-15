@@ -1,0 +1,60 @@
+@font-face {
+  font-family: sans;
+  src: url(font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf) format("truetype");
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: sans;
+  src: url(font/Source_Sans_3/SourceSans3-Italic-VariableFont_wght.ttf) format("truetype");
+  font-weight: 200 900;
+  font-style: italic;
+  font-display: block;
+}
+* {
+  -webkit-tap-highlight-color: #0000;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+html,
+body,
+.wrap {
+  height: 100%;
+}
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+body {
+  background-color: #fff;
+  color: #000;
+  font-family: sans, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+  margin: 0;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000;
+    color: #fff;
+  }
+}
+.wrap {
+  display: grid;
+  place-content: center;
+  place-items: center;
+}
+h1 {
+  margin: auto;
+  font-size: 3em;
+  line-height: 1;
+}
+.icon {
+  width: 6em;
+  height: 6em;
+}
