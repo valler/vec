@@ -1,3 +1,5 @@
 # vec
 
-vector math library for the web
+vector math for the web
+
+https://valler.github.io/vec/
