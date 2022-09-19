@@ -12,6 +12,7 @@ type v = {
   add(a: n[], b: n[]): n[];
   sum(a: n[][]): n[];
   sMul(s: n, b: n[]): n[];
+  sAdd(s: n, b: n[]): n[];
   neg(a: n[]): n[];
   sub(a: n[], b: n[]): n[];
   mul(a: n[], b: n[]): n[];

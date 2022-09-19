@@ -12,6 +12,7 @@ import {
   neg,
   normalize,
   one,
+  sAdd,
   sMul,
   sub,
   sum,
@@ -64,6 +65,13 @@ test("sum", () => {
 
 test("sMul", () => {
   assertEquals(sMul(3, e1()), sum([e1(), e1(), e1()]));
+});
+
+test("sAdd", () => {
+  assertEquals(
+    sAdd(3, e1()),
+    add(sMul(3, one()), e1()),
+  );
 });
 
 test("neg", () => {

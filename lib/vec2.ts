@@ -17,6 +17,7 @@ export const sum = (a: v[]) => {
   return o;
 };
 export const sMul = (s: n, [a, b]: v): v => [s * a, s * b];
+export const sAdd = (s: n, [a, b]: v): v => [s + a, s + b];
 export const neg = ([a, b]: v): v => [-1 * a, -1 * b];
 export const sub = ([a, b]: v, [c, d]: v): v => [a - c, b - d];
 export const mul = ([a, b]: v, [c, d]: v): v => [a * c, b * d];
