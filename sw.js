@@ -1,4 +1,4 @@
-const cacheName = "cache-jfshgf", files = [
+const cacheName = "c1", files = [
     "./",
     "offline.html",
     "base.css",
