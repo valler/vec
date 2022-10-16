@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Modules</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Modules</h1>
+      <p>
+        <span>Focus on four modules:</span>
+        <span><code>vec</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code>.</span>
+        <span>Start at the root of the repo.</span>
+        <span>Enter the lib.</span>
+        <span>Choose between Deno, TypeScript, and JavaScript.</span>
+        <span>The module <code>vec</code> is the most general.</span>
+        <span>It has no upper limit on the number of dimensions.</span>
+        <span>The others represent different subspaces.</span>
+        <span>The interfaces are similar, but differ where it makes sense.</span>
+      </p>
+      <figure>
+        <figcaption>Example paths to the module <code>vec2</code>:</figcaption>
+        <code class="lines">
+          <span>./lib/deno/vec2.ts</span>
+          <span>./lib/ts/vec2.ts</span>
+          <span>./lib/js/vec2.js</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>General example:</figcaption>
+        <code class="lines">
+          <span>import { add, zero, one } from "vec";</span>
+          <span>const d = 9; // (dimensions)</span>
+          <span>export default add(zero(d), one(d));</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Two-dimensional example:</figcaption>
+        <code class="lines">
+          <span>import { add, zero, one } from "vec2";</span>
+          <span>export default add(zero, one);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Three-dimensional example:</figcaption>
+        <code class="lines">
+          <span>import { add, zero, one } from "vec3";</span>
+          <span>export default add(zero, one);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Four-dimensional example:</figcaption>
+        <code class="lines">
+          <span>import { add, zero, one } from "vec4";</span>
+          <span>export default add(zero, one);</span>
+        </code>
+      </figure>
+      <p class="lines">
+        <span>Note:</span>
+        <span>Module syntax varies across environments.</span>
+        <span>The examples use bare paths as an abstraction.</span>
+      </p>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../equality/">Equality</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

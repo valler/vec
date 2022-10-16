@@ -1,3 +1,4 @@
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js", { type: "module" });
+  const sw = import.meta.url.replace(/app\.js$/, "sw.js");
+  navigator.serviceWorker.register(sw, { type: "module" });
 }

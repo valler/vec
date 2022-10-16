@@ -1,0 +1,12 @@
+#identifiers {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  gap: 0 0.5em;
+}
+
+#identifiers > * {
+  flex-basis: 4em;
+}

@@ -1,0 +1,15 @@
+scripts:
+  app:
+    desc: Build the app
+    cmd: npx tsc -p tsconfig.json
+  sw:
+    desc: Build the service worker
+    cmd: npx tsc -p tsconfig.sw.json
+  app-sw:
+    desc: Build the app and the service worker
+    pll:
+      - vr app
+      - vr sw
+  lib:
+    desc: Build the lib
+    cmd: cd lib && vr build && cd ..

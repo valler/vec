@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Direction</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Direction</h1>
+      <p>
+        <span>The function <code>dir</code> returns a unit vector given a nonzero vector.</span>
+        <span>After normalization two vectors are equal or differ in direction only.</span>
+      </p>
+      <figure>
+        <figcaption>Example same direction:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, dir, sca } from "vec2";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>dir(sca(1)),</span>
+            <span>dir(sca(3)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example different direction:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, dir, basis } from "vec2";</span>
+          <span>export default !isEqual(</span>
+          <span class="indent-1">
+            <span>dir(basis[0]),</span>
+            <span>dir(basis[1]),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example normalization:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, dir, one, len, sDiv } from "vec2";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>dir(one),</span>
+            <span>sDiv(one, len(v)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../projection/">Projection</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

@@ -1,20 +1,19 @@
 {
+  "exclude": [
+    "lib/",
+    "sw.ts"
+  ],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "Node",
     "lib": [
       "ESNext",
-      "DOM",
-      "WebWorker"
+      "DOM"
     ],
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
-  },
-  "exclude": [
-    "lib/dev.ts",
-    "lib/**/*.test.ts"
-  ]
+    "noImplicitAny": true
+  }
 }

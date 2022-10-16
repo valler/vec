@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <script src="app.js" type="module"></script>
+  <title>Composition</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Composition</h1>
+      <figure>
+        <svg id="svg" role="img" viewBox="-80 -80 160 160" width="160" height="160" fill="currentColor">
+            <circle r="8" cx="30" cy="10" />
+            <circle r="8" cx="-10" cy="-30" />
+            <circle r="8" cx="20" cy="-20" />
+        </svg>
+      </figure>
+      <form id="ranges" class="ranges">
+        <input type="range" value="30" min="-30" max="30">
+        <input type="range" value="10" min="-30" max="30">
+        <input type="range" value="-10" min="-30" max="30">
+        <input type="range" value="-30" min="-30" max="30">
+      </form>
+      <p>
+        <span>Every vector can be expressed as a linear combination of a basis.</span>
+        <span>The standard basis for a space is given by <code>basis</code>.</span>
+        <span>It is constant for the modules with a predefined space.</span>
+        <span>In general you have to provide the number of dimensions.</span>
+        <span>The function <code>vec</code> creates a vector.</span>
+        <span>The function <code>add</code> performs vector addition.</span>
+        <span>The function <code>sum</code> is the varyadic equivalent.</span>
+        <span>The function <code>sMul</code> implements scalar multiplication.</span>
+        <span>Use the function <code>mul</code> for componentwise multiplication.</span>
+        <span>The function <code>pro</code> is the varyadic version of <code>mul</code>.</span>
+        <span>The vector <code>one</code> is the sum of the standard basis.</span>
+        <span>The function <code>sAdd</code> adds a scalar multiple of the vector <code>one</code>.</span>
+        <span>The function <code>sca</code> creates a scalar multiple of the vector <code>one</code>.</span>
+        <span>The vector <code>zero</code> is a special case of that and equals scalar multiplication by zero.</span>
+        <span>The functions <code>pow</code> and <code>sPow</code> generalize products of equal terms.</span>
+        <span>The functions <code>mad</code> and <code>sMad</code> perform addition after multiplication.</span>
+      </p>
+      <p>These are the identifiers described here:</p>
+      <ul id="identifiers">
+        <li><code>basis</code></li>
+        <li><code>vec</code></li>
+        <li><code>sca</code></li>
+        <li><code>zero</code></li>
+        <li><code>one</code></li>
+        <li><code>add</code></li>
+        <li><code>mul</code></li>
+        <li><code>pow</code></li>
+        <li><code>mad</code></li>
+        <li><code>sAdd</code></li>
+        <li><code>sMul</code></li>
+        <li><code>sPow</code></li>
+        <li><code>sMad</code></li>
+        <li><code>sum</code></li>
+        <li><code>pro</code></li>
+      </ul>
+      <figure>
+        <figcaption>Example general standard basis:</figcaption>
+        <code class="lines">
+          <span>import { basis } from "vec";</span>
+          <span>const [e0, e1, e2] = basis(3);</span>
+          <span>export default { e0, e1, e2 };</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example standard basis with predefined number of dimensions:</figcaption>
+        <code class="lines">
+          <span>import { basis } from "vec3";</span>
+          <span>const [e0, e1, e2] = basis;</span>
+          <span>export default { e0, e1, e2 };</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example two-dimensional vector:</figcaption>
+        <code class="lines">
+          <span>import { vec } from "vec2";</span>
+          <span>export default vec(4, 5);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example four-dimensional vector:</figcaption>
+        <code class="lines">
+          <span>import { vec } from "vec4";</span>
+          <span>export default vec(2, 3, 4, 5);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example vector:</figcaption>
+        <code class="lines">
+          <span>import { vec } from "vec";</span>
+          <span>export default vec(6, 5, 3, 8, 9);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example composition:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, vec, sum, sMul, basis } from "vec3";</span>
+          <span>const [e0, e1, e2] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>vec(2, 3, 4),</span>
+            <span>sum(</span>
+            <span class="indent-1">
+              <span>sMul(e0, 2),</span>
+              <span>sMul(e1, 3),</span>
+              <span>sMul(e2, 4),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example addition:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, add, vec } from "vec";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>add(</span>
+            <span class="indent-1">
+              <span>vec(3, 6, 5),</span>
+              <span>vec(4, 2, 9),</span>
+            </span>
+            <span>),</span>
+            <span>vec(</span>
+            <span class="indent-1">
+              <span>3 + 4,</span>
+              <span>6 + 2,</span>
+              <span>5 + 9,</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example sum of distinct terms:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sum, add, basis } from "vec4";</span>
+          <span>const [e0, e1, e2, e3] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sum(e0, e1, e2, e3),</span>
+            <span>add(add(add(e0, e1), e2), e3),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example sum of equal terms:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sum, vec } from "vec";</span>
+          <span>const v = vec(1);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sMul(v, 4),</span>
+            <span>sum(v, v, v, v),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar multiplication:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sMul, vec } from "vec";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sMul(vec(3, 4, 5), 2),</span>
+            <span>vec(3 * 2, 4 * 2, 5 * 2),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example sum of standard basis:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, one, sum, basis } from "vec4";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>one,</span>
+            <span>sum(...basis),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example general sum of standard basis:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, one, sum, basis } from "vec";</span>
+          <span>const d = 7; // (dimensions)</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>one(d),</span>
+            <span>sum(...basis(d)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar multiple of one:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sca, one, sMul } from "vec4";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sca(7),</span>
+            <span>sMul(one, 7),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example general scalar multiple of one:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sca, one, sMul } from "vec4";</span>
+          <span>const d = 9; // (dimensions)</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sca(d)(7),</span>
+            <span>sMul(one(d), 7),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example zero vector:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, zero, sca } from "vec3";</span>
+          <span>export default isEqual(zero, sca(0));</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example general zero vector:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, zero, sca } from "vec";</span>
+          <span>const d = 7; // (dimensions)</span>
+          <span>export default isEqual(zero(d), sca(d)(0));</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar addition:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sAdd, sca, basis } from "vec3";</span>
+          <span>const [v] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sAdd(v, 3),</span>
+            <span>add(v, sca(3)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example componentwise multiplication:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, mul, sMul, basis, vec, one } from "vec3";</span>
+          <span>const [e0, e1, e2] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>mul(one, vec(2, 3, 4)),</span>
+            <span>sum(</span>
+            <span class="indent-1">
+              <span>sMul(e0, 2),</span>
+              <span>sMul(e1, 3),</span>
+              <span>sMul(e2, 4),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example product of distinct terms:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, pro, mul, sAdd, basis } from "vec4";</span>
+          <span>const [e0, e1, e2, e3] = basis;</span>
+          <span>const [v0, v1, v2, v3] = [</span>
+          <span class="indent-1">
+            <span>sAdd(e0, 3),</span>
+            <span>sAdd(e1, 4),</span>
+            <span>sAdd(e2, 5),</span>
+            <span>sAdd(e3, 6),</span>
+          </span>
+          <span>];</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>pro(v0, v1, v2, v3),</span>
+            <span>mul(mul(mul(v0, v1), v2), v3),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example product of equal terms:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sPow, pro } from "vec3";</span>
+          <span>const v = vec(3, 4, 5);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sPow(v, 5),</span>
+            <span>pro(v, v, v, v, v),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example componentwise product of equal terms:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, pow, sPow, sMul, basis } from "vec3";</span>
+          <span>const [e0, e1, e2] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>pow(vec(3, 4, 5), vec(5, 3, 2),</span>
+            <span>sum(</span>
+            <span class="indent-1">
+              <span>sPow(sMul(e0, 3), 5),</span>
+              <span>sPow(sMul(e1, 4), 3),</span>
+              <span>sPow(sMul(e2, 5), 2),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example mad:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, mad, mul, add, vec } from "vec2";</span>
+          <span>const v = vec(3, 4);</span>
+          <span>const m = vec(5, 6);</span>
+          <span>const a = vec(1, 2);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>mad(v, m, a),</span>
+            <span>add(mul(v, m), a),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar mad:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sMad, sMul, sAdd, vec } from "vec2";</span>
+          <span>const v = vec(3, 4);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sMad(v, 2, 1),</span>
+            <span>sAdd(sMul(v, 2), 1),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../identity/">Identity</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

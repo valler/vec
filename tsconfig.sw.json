@@ -1,0 +1,21 @@
+{
+  "files": [
+    "sw.ts"
+  ],
+  "exclude": [
+    "lib/"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": [
+      "ESNext",
+      "WebWorker"
+    ],
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true
+  }
+}

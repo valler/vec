@@ -1,0 +1,17 @@
+{
+  "fmt": {
+    "files": {
+      "exclude": ["cov/", "js/", "ts/"]
+    }
+  },
+  "lint": {
+    "files": {
+      "exclude": ["cov/", "js/", "ts/"]
+    }
+  },
+  "test": {
+    "files": {
+      "exclude": ["cov/", "js/", "ts/", "scripts/"]
+    }
+  }
+}

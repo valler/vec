@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <script src="app.js" type="module"></script>
+  <title>Interpolation</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Interpolation</h1>
+      <figure>
+        <svg id="svg" role="img" viewBox="-8 -8 160 160" width="160" height="160" fill="currentColor">
+          <circle r="8" cx="140" />
+          <circle r="8" cy="140" />
+          <circle r="8" cx="140" />
+          <circle r="8" cx="140" />
+        </svg>
+      </figure>
+      <form id="ranges" class="ranges">
+        <input type="range" value="0" min="0" max="1" step="0.01">
+      </form>
+      <p>
+        <span>The function <code>lerp</code> returns a linear interpolation between two vectors.</span>
+        <span>The function <code>mix</code> interpolates componentwise.</span>
+        <span>The function <code>slerp</code> performs spherical linear interpolation.</span>
+        <span>It is not defined for collinear vectors.</span>
+        <span>It reduces to linear interpolation in the limit approaching collinearity.</span>
+        <span>This library does not implement a function which treats collinear vectors as if they were not.</span>
+        <span>The limit fallback would be just one of several solutions for this edge case, depending on the situation.</span>
+      </p>
+      <figure>
+        <figcaption>Example linear interpolation:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, lerp, basis, sMul, add } from "vec2";</span>
+          <span>const [a, b] = basis;</span>
+          <span>const t = 0.5;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>lerp(a, b, t),</span>
+            <span>add(</span>
+            <span class="indent-1">
+              <span>sMul(a, 1 - t),</span>
+              <span>sMul(b, t),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example componentwise interpolation:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, mix, basis, mul, add, one } from "vec2";</span>
+          <span>const [a, b, t] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>mix(a, b, t),</span>
+            <span>add(</span>
+            <span class="indent-1">
+              <span>mul(a, sub(one, t)),</span>
+              <span>mul(b, t),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example spherical linear interpolation:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, slerp, basis, dot, sDiv, add, sMul } from "vec2";</span>
+          <span>const { sin } = Math;</span>
+          <span>const [a, b] = basis;</span>
+          <span>const x = acos(dot(a, b));</span>
+          <span>const t = 0.5;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>slerp(a, b, t),</span>
+            <span>sDiv(</span>
+            <span class="indent-1">
+              <span>add(</span>
+              <span class="indent-1">
+                <span>sMul(a, sin(x * (1 - t))),</span>
+                <span>sMul(b, sin(x * t)),</span>
+              </span>
+              <span>),</span>
+              <span>sin(x),</span>
+            </span>
+            <span>),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../interpolation/">Interpolation</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

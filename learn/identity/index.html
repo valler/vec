@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Identity</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Identity</h1>
+      <p>
+        <span>The function <code>id</code> returns a vector equal to its argument.</span>
+        <span>The <code>zero</code> vector ist the additive identity.</span>
+        <span>The scalar <code>1</code> is the identity under scalar multiplication.</span>
+        <span>The vector <code>one</code> is the vector equivalent.</span>
+      </p>
+      <figure>
+        <figcaption>Example identity:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, id, one } from "vec2";</span>
+          <span>export default isEqual(id(one), one);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example additive identity:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, add, one, zero } from "vec2";</span>
+          <span>export default isEqual(add(one, zero), one);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar multiplactive identity:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, sMul, one } from "vec2";</span>
+          <span>export default isEqual(sMul(one, 1), one);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example multiplactive identity:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, mul, vec, one } from "vec2";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>mul(one, vec(2, 3)),</span>
+            <span>vec(2, 3),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../inverse/">Inverse</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

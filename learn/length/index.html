@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Length</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Length</h1>
+      <p>
+        <span>The length of a vector is defined as the square root of the dot product with itself.</span>
+        <span>The dot product of a vector with itself equals the squared length of a vector.</span>
+        <span>The function <code>dot</code> computes the dot product.</span>
+        <span>The function <code>len</code> returns the length.</span>
+        <span>The function <code>sqrLen</code> returns the squared length.</span>
+        <span>The function <code>dist</code> computes the distance between two points represented by position vectors.</span>
+        <span>The function <code>sqrDist</code> returns the distance squared.</span>
+      </p>
+      <figure>
+        <figcaption>Example dot product:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, dot, mul, coefSum, vec } from "vec2";</span>
+          <span>const a = vec(3, 4);</span>
+          <span>const b = vec(5, 6);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>dot(a, b),</span>
+            <span>coefSum(mul(a, b)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example squared length:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, dot, sqrLen, vec } from "vec2";</span>
+          <span>const a = vec(3, 4);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sqrLen(a),</span>
+            <span>dot(a, a),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example length:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, dot, len, vec } from "vec2";</span>
+          <span>const a = vec(3, 4);</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>len(a),</span>
+            <span>Math.sqrt(sqrLen(a)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example distance:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, dist, len, sub, basis } from "vec2";</span>
+          <span>const [e0, e1] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>dist(e0, e1),</span>
+            <span>len(sub(e0, e1)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example distance squared:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, sqrDist, sqrLen, sub, basis } from "vec2";</span>
+          <span>const [e0, e1] = basis;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sqrDist(e0, e1),</span>
+            <span>sqrLen(sub(e0, e1)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../direction/">Direction</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

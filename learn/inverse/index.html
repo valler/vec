@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Inverse</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Inverse</h1>
+      <p>
+        <span>Negation returns the additive inverse of a vector.</span>
+        <span>Subtraction reverses addition.</span>
+        <span>Scalar division yields the inverse under scalar multiplication, except for zero.</span>
+        <span>Componentwise division also yields the inverse for every vector offset from zero.</span>
+        <span>The last condition expressed in other words:</span>
+        <span>The product of the vector coefficients must be nonzero.</span>
+        <span>the functions are <code>neg</code>, <code>sub</code>, <code>sSub</code>, <code>sDiv</code>, and <code>div</code>.</span>
+      </p>
+      <figure>
+        <figcaption>Example additive inverse:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, add, one, neg, zero } from "vec3";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>add(one, neg(one)),</span>
+            <span>zero,</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example subtraction:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, add, neg, sub, one } from "vec3";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sub(one, one),</span>
+            <span>add(one, neg(one)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example scalar subtraction:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, sAdd, sSub, one } from "vec3";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sSub(one, 1),</span>
+            <span>sAdd(one, -1),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example inverse of scalar multiplication:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, sDiv, sMul, one } from "vec3";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>sDiv(sMul(one, 2), 2)),</span>
+            <span>one,</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example inverse of componentwise multiplication:</figcaption>
+        <code class="lines">  
+          <span>import { isEqual, div, mul, vec } from "vec3";</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>div(vec(3, 4, 5), vec(3, 4, 5)),</span>
+            <span>one,</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../reduction/">Reduction</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

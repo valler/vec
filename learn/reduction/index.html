@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Reduction</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Reduction</h1>
+      <p>
+        <span>You can reduce vector coefficients to a number.</span>
+        <span>The function <code>coefSum</code> returns the sum of the coefficients.</span>
+        <span>The function <code>coefPro</code> returns the product of the coefficients.</span>
+        <span>It takes <var>n</var> reductions to produce an n-dimensional vector.</span>
+      </p>
+      <figure>
+        <figcaption>Example coefficient sum:</figcaption>
+        <code class="lines">
+          <span>import { coefSum, vec } from "vec";</span>
+          <span>export default coefSum(</span>
+          <span class="indent-1">
+            <span>vec(1, 2, 3, 4, 5)</span>
+          </span>
+          <span>) === 1 + 2 + 3 + 4 + 5;</span>
+        </code>
+      <figure>
+      </figure>
+        <figcaption>Example coefficient product:</figcaption>
+        <code class="lines">
+          <span>import { coefPro, vec } from "vec";</span>
+          <span>export default coefPro(</span>
+          <span class="indent-1">
+            <span>vec(1, 2, 3, 4, 5)</span>
+          </span>
+          <span>) === 1 * 2 * 3 * 4 * 5;</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../length/">Length</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

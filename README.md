@@ -1,5 +1,5 @@
 # vec
 
-vector math for the web
+vectors for the web
 
 https://valler.github.io/vec/

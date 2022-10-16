@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <title>Reflection</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../">Learn</a>
+    </header>
+    <main>
+      <h1>Reflection</h1>
+      <p>
+        <span>This is about reflection in a broader sense, not only through hyperplanes.</span>
+        <span>The function <code>refl</code> returns the mirror image through the hyperplane.</span>
+        <span>The plane is represented by a normal vector.</span>
+        <span>Reflection through a line can be done with the function <code>conj</code>.</span>
+        <span>The line is represented by a unit vector.</span>
+        <span>The name stands for conjugate, not to be confused with the complex conjugate.</span>
+        <span>Point reflection around the origin is simply negation, for example with the function <code>neg</code>.</span>
+      </p>
+      <figure>
+        <figcaption>Example reflection:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, refl, sub, sMul, proj, one, basis } from "vec2";</span>
+          <span>const [n] = basis;</span>
+          <span>const v = one;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>refl(n, v),</span>
+            <span>sub(v, sMul(proj(n, v), 2)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example reflection around an axis:</figcaption>
+        <code class="lines">
+          <span>import { isEqual, conj, add, sMul, rej, one, basis } from "vec2";</span>
+          <span>const [n] = basis;</span>
+          <span>const v = one;</span>
+          <span>export default isEqual(</span>
+          <span class="indent-1">
+            <span>conj(n, v),</span>
+            <span>add(v, sMul(rej(n, v), -2)),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../motion/">Motion</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>
