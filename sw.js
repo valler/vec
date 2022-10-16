@@ -1,4 +1,4 @@
-const cacheName = "c1", files = [
+const cacheName = "c2", files = [
     "./",
     "offline.html",
     "base.css",
