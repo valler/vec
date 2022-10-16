@@ -1,7 +1,7 @@
 export type { };
 declare const self: ServiceWorkerGlobalScope;
 const
-  cacheName = "c",
+  cacheName = "c0",
   files = [
     "./",
     "offline.html",
