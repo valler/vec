@@ -18,6 +18,6 @@ function transformImports(name: string) {
       /([ }]from\s*['"]\.\.?\/[^'"]+\.)[Tt][Ss](['"]\s*;?)/g,
       "$1js$2",
     );
-    writeTextFile(`ts/${name}`, transformed);
+    writeTextFile(`js/${name}`, transformed);
   };
 }

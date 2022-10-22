@@ -1,4 +1,4 @@
-const cacheName = "c3", files = [
+const cacheName = "c4", files = [
     "./",
     "offline.html",
     "base.css",
@@ -37,21 +37,21 @@ const cacheName = "c3", files = [
     "lib/js/vec3.js.map",
     "lib/js/vec4.js.map",
 ];
-self.addEventListener("install", event => {
+self.addEventListener("install", (event) => {
     self.skipWaiting();
     event.waitUntil((async () => {
         const cache = await caches.open(cacheName);
         await cache.addAll(files);
     })());
 });
-self.addEventListener("activate", event => {
+self.addEventListener("activate", (event) => {
     event.waitUntil((async () => {
         await self.clients.claim();
         await Promise.all((await caches.keys())
             .map(k => k === cacheName || caches.delete(k)));
     })());
 });
-self.addEventListener("fetch", event => {
+self.addEventListener("fetch", (event) => {
     event.respondWith((async () => {
         const { request } = event;
         const cached = await caches.match(request);

@@ -1,15 +1,18 @@
 {
   "exclude": [
-    "lib/",
+    "lib/deno",
+    "lib/scripts",
+    "lib/cov",
     "sw.ts"
   ],
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "nodenext",
     "lib": [
       "ESNext",
-      "DOM"
+      "DOM",
+      "DOM.Iterable"
     ],
     "sourceMap": true,
     "forceConsistentCasingInFileNames": true,

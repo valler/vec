@@ -1,5 +1,5 @@
 type n = number;
-type v = n[];
+export type v = n[];
 type m = v[];
 const { pow: nPow, sqrt, sin, acos } = Math;
 export const zero = (d: n): v => new Array(d).fill(0);
@@ -136,6 +136,13 @@ export const lerp = (a: v, b: v, c: n): v => {
   const t = 1 - c;
   return a.map((x, i) => x * t + b[i] * c);
 };
+export const lerpFromTo = (a: v, b: v, c: n) => {
+  const o: v[] = [];
+  for (let i = 0; i <= c; i++) {
+    o.push(lerp(a, b, i / c));
+  }
+  return o;
+};
 export const mix = (a: v, b: v, c: v): v =>
   a.map((x, i) => {
     const t = c[i];
@@ -152,4 +159,11 @@ export const slerp = (a: v, b: v, c: n) => {
     ),
     s,
   );
+};
+export const slerpFromTo = (a: v, b: v, c: n) => {
+  const o: v[] = [];
+  for (let i = 0; i <= c; i++) {
+    o.push(slerp(a, b, i / c));
+  }
+  return o;
 };

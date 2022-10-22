@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <link rel="stylesheet" href="../../base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="preload" href="../../font/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf" as="font" crossorigin="">
+  <link rel="icon" href="../../icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../icon192.png">
+  <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
+  <script src="../../app.js" type="module"></script>
+  <script src="app.js" type="module"></script>
+  <title>Dots</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <a href="../#Rendering">Rendering</a>
+    </header>
+    <main>
+      <h1>Dots</h1>
+      <figure>
+        <canvas id="canvas"></canvas>
+      </figure>
+      <form id="ranges" class="ranges">
+        <input type="range" value="1" min="0" max="2" step=".01">
+      </form>
+      <p>
+        <span>Dots are an easy way to get started with rendering.</span>
+        <span>A dot has a position, size and color.</span>
+      </p>
+      <figure>
+        <figcaption>Example dot:</figcaption>
+        <code class="lines">
+          <span>import { zero as center } from "vec2";</span>
+          <span>import { one as white } from "vec4";</span>
+          <span>import { dot } from "dot2";</span>
+          <span>const size = 1;</span>
+          <span>export default dot(...center, size, ...white);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example dots:</figcaption>
+        <code class="lines">
+          <span>import { neg, basis, zero as center } from "vec2";</span>
+          <span>import { one as white } from "vec4";</span>
+          <span>import { dot, dots } from "dot2";</span>
+          <span>const size = 1;</span>
+          <span>const [right, top] = basis;</span>
+          <span>const left = neg(right);</span>
+          <span>const bottom = neg(top);</span>
+          <span>export default dots(</span>
+          <span class="indent-1">
+            <span>dot(...center, size, ...white),</span>
+            <span>dot(...top, size, ...white),</span>
+            <span>dot(...right, size, ...white),</span>
+            <span>dot(...bottom, size, ...white),</span>
+            <span>dot(...left, size, ...white),</span>
+          </span>
+          <span>);</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example vetors to dots:</figcaption>
+        <code class="lines">
+          <span>import { vecsToDots } from "dot2";</span>
+          <span>import { slerpFromTo, basis } from "vec2";</span>
+          <span>import { one as white } from "vec4";</span>
+          <span>const [right, top] = basis;</span>
+          <span>const arc = slerpFromTo(right, top, 6);</span>
+          <span>const small = 0.05;</span>
+          <span>export default vecsToDots(arc, small, ...white);</span>
+        </code>
+      </figure>
+    </main>
+    <nav>
+      <ul>
+        <li><a href="../">Rendering</a></li>
+      </ul>
+    </nav>
+    <footer>
+      <ul>
+        <li><a href="../../impressum/">Impressum</a></li>
+        <li><a href="../../privacy/">Privacy</a></li>
+        <li><a href="./">© Valerij</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+
+</html>

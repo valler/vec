@@ -1,7 +1,7 @@
-export type { };
+export type {};
 declare const self: ServiceWorkerGlobalScope;
 const
-  cacheName = "c3",
+  cacheName = "c4",
   files = [
     "./",
     "offline.html",
@@ -41,14 +41,14 @@ const
     "lib/js/vec3.js.map",
     "lib/js/vec4.js.map",
   ];
-self.addEventListener("install", event => {
+self.addEventListener("install", (event: { waitUntil: (x: Promise<void>) => void; }) => {
   self.skipWaiting();
   event.waitUntil((async () => {
     const cache = await caches.open(cacheName);
     await cache.addAll(files);
   })());
 });
-self.addEventListener("activate", event => {
+self.addEventListener("activate", (event: { waitUntil: (x: Promise<void>) => void; }) => {
   event.waitUntil((async () => {
     await self.clients.claim();
     await Promise.all((await caches.keys())
@@ -56,7 +56,7 @@ self.addEventListener("activate", event => {
     );
   })());
 });
-self.addEventListener("fetch", event => {
+self.addEventListener("fetch", (event: { respondWith: any; request: any; }) => {
   event.respondWith((async () => {
     const { request } = event;
     const cached = await caches.match(request);

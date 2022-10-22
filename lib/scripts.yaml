@@ -9,12 +9,8 @@ scripts:
   dnt:
     desc: deno to ts
     cmd: deno run --allow-read --allow-write scripts/denoToNode.ts
-  tsc:
-    desc: ts to js
-    cmd: npx tsc -p ts/tsconfig.json
   build:
     desc: build the lib
     cmd:
       - vr cov
       - vr dnt
-      - vr tsc

@@ -1,24 +1,29 @@
 import { vec, add } from "../../lib/js/vec2.js";
-const d = document;
-const [c0, c1, c2] = d.querySelectorAll("#svg circle");
-const ranges = d.querySelectorAll("#ranges input");
-const setPos = (el, [x, y]) => {
-  el.cx.baseVal.value = x;
-  el.cy.baseVal.value = y;
+const [c0, c1, c2] = document.querySelectorAll("#svg circle");
+const ranges = document.querySelectorAll("#ranges input[type='range']");
+const [r0, r1, r2, r3] = ranges;
+const setPos = (c, [x, y]) => {
+    c.cx.baseVal.value = x;
+    c.cy.baseVal.value = y;
+};
+const hasQueried = true &&
+    c0 instanceof SVGCircleElement &&
+    c1 instanceof SVGCircleElement &&
+    c2 instanceof SVGCircleElement &&
+    r0 instanceof HTMLInputElement &&
+    r1 instanceof HTMLInputElement &&
+    r2 instanceof HTMLInputElement &&
+    r3 instanceof HTMLInputElement;
+if (hasQueried) {
+    const update = () => {
+        const a = vec(r0.valueAsNumber, r1.valueAsNumber);
+        const b = vec(r2.valueAsNumber, r3.valueAsNumber);
+        setPos(c0, a);
+        setPos(c1, b);
+        setPos(c2, add(a, b));
+    };
+    for (const r of ranges) {
+        r.addEventListener("change", update);
+    }
 }
-const update = () => {
-  const a = vec(
-    ranges[0].valueAsNumber,
-    ranges[1].valueAsNumber,
-  );
-  const b = vec(
-    ranges[2].valueAsNumber,
-    ranges[3].valueAsNumber,
-  );
-  setPos(c0, a);
-  setPos(c1, b);
-  setPos(c2, add(a, b));
-}
-for (const r of ranges) {
-  r.addEventListener("change", update);
-}
+//# sourceMappingURL=app.js.map

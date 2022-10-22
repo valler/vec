@@ -40,8 +40,10 @@ type vec = {
   conj(a: n[], b: n[]): n[];
   rot(a: n[], b: n[], c: n[]): n[];
   lerp(a: n[], b: n[], c: n): n[];
+  lerpFromTo(a: n[], b: n[], c: n): n[][];
   mix(a: n[], b: n[], c: n[]): n[];
   slerp(a: n[], b: n[], c: n): n[];
+  slerpFromTo(a: n[], b: n[], c: n): n[][];
 };
 
 interface vecN extends vec {

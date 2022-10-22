@@ -14,6 +14,7 @@ import {
   isEqual,
   len,
   lerp,
+  lerpFromTo,
   mad,
   mix,
   mul,
@@ -29,6 +30,7 @@ import {
   sca,
   sDiv,
   slerp,
+  slerpFromTo,
   sMad,
   sMul,
   sPow,
@@ -377,6 +379,19 @@ test("lerp", () => {
   );
 });
 
+test("lerpFromTo", () => {
+  assertEquals(
+    lerpFromTo(o, v, 4),
+    [
+      o,
+      s(.25),
+      s(.50),
+      s(.75),
+      v,
+    ],
+  );
+});
+
 test("mix", () => {
   const t = s(0.2);
   assertEquals(
@@ -397,5 +412,17 @@ test("slerp", () => {
       ),
       sin(x),
     ),
+  );
+});
+
+test("slerpFromTo", () => {
+  const n = 4;
+  const o = [];
+  for (let i = 0; i <= n; i++) {
+    o.push(slerp(e0, e1, i / n));
+  }
+  assertEquals(
+    slerpFromTo(e0, e1, n),
+    o,
   );
 });
