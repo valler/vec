@@ -35,13 +35,17 @@ type arg = {
 self.addEventListener("fetch", (event: arg) => {
   event.respondWith((async () => {
     const { request } = event;
-    return caches.open(cacheName).then((cache) =>
-      cache.match(request).then((cached) =>
-        cached || fetch(request.url).then((response) => {
-          cache.put(request, response.clone());
-          return response;
-        })
-      )
-    );
+    const cache = await caches.open(cacheName);
+    const cached = await cache.match(request);
+    if (cached) {
+      fetch(request.url).then((fetched) => {
+        cache.put(request.clone(), fetched.clone());
+      });
+      return cached;
+    } else {
+      const fetched = await fetch(request.url);
+      cache.put(request.clone(), fetched.clone());
+      return fetched;
+    }
   })());
 });
