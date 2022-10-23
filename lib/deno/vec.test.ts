@@ -12,6 +12,7 @@ import {
   dot,
   id,
   isEqual,
+  isVec,
   len,
   lerp,
   lerpFromTo,
@@ -103,6 +104,14 @@ test("sca", () => {
 test("isEqual", () => {
   assertEquals(isEqual(v, v), true);
   assertEquals(isEqual(v, o), false);
+});
+
+test("isVec", () => {
+  assertEquals(isVec([]), false);
+  assertEquals(isVec([NaN]), false);
+  assertEquals(isVec([Infinity]), false);
+  assertEquals(isVec(["a"]), false);
+  assertEquals(isVec(o), true);
 });
 
 test("id", () => {

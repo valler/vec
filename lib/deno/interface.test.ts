@@ -9,6 +9,7 @@ type n = number;
 type vec = {
   vec(...a: n[]): n[];
   isEqual(a: n[], b: n[]): boolean;
+  isVec(a: unknown[]): boolean;
   id(a: n[]): n[];
   neg(a: n[]): n[];
   add(a: n[], b: n[]): n[];

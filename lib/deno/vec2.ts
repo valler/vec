@@ -8,6 +8,8 @@ export const basis: m = [[1, 0], [0, 1]];
 export const vec = (a: n, b: n): v => [a, b];
 export const sca = (s: n): v => [s, s];
 export const isEqual = ([a, b]: v, [c, d]: v) => a === c && b === d;
+export const isVec = (x: unknown[]): x is v =>
+  x.length === 2 && x.every((x) => Number.isFinite(x));
 export const id = ([a, b]: v): v => [a, b];
 export const neg = ([a, b]: v): v => [-a, -b];
 export const add = ([a, b]: v, [c, d]: v): v => [a + c, b + d];

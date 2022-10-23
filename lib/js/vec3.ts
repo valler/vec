@@ -9,6 +9,8 @@ export const vec = (a: n, b: n, c: n): v => [a, b, c];
 export const sca = (s: n): v => [s, s, s];
 export const isEqual = ([a, b, c]: v, [d, e, f]: v) =>
   a === d && b === e && c === f;
+export const isVec = (x: unknown[]): x is v =>
+  x.length === 3 && x.every((x) => Number.isFinite(x));
 export const id = ([a, b, c]: v): v => [a, b, c];
 export const neg = ([a, b, c]: v): v => [-a, -b, -c];
 export const add = ([a, b, c]: v, [d, e, f]: v): v => [a + d, b + e, c + f];
