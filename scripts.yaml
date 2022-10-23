@@ -13,3 +13,9 @@ scripts:
   lib:
     desc: Build the lib
     cmd: cd lib && vr build && cd ..
+  lib-app:
+    desc: Build the lib then the app
+    cmd: vr lib && vr app
+  lib-app-sw:
+    desc: Build the lib then the app and service worker
+    cmd: vr lib && vr app-sw
