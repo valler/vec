@@ -28,16 +28,18 @@ self.addEventListener("fetch", (event) => {
         const { request } = event;
         const cached = await caches.match(request);
         if (cached) {
-            fetch(request).then((async (response) => {
-                (await caches.open(cacheName))
-                    .put(request, response.clone());
+            fetch(request).then(((response) => {
+                caches.open(cacheName).then((cache) => {
+                    cache.put(request, response.clone());
+                });
             }));
             return cached;
         }
         else {
             const fetched = await fetch(request);
-            (await caches.open(cacheName))
-                .put(request, fetched.clone());
+            caches.open(cacheName).then((cache) => {
+                cache.put(request, fetched.clone());
+            });
             return fetched;
         }
     })());
