@@ -28,6 +28,7 @@ html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
   scroll-behavior: smooth;
+  scroll-padding: 0.5em;
   --col: #000;
   --bg: #fff;
 }
@@ -69,7 +70,9 @@ footer {
   width: 100%;
   max-width: 40em;
 }
-header, nav, footer {
+header,
+nav,
+footer {
   padding: 0.5em;
 }
 nav h2 {
@@ -111,7 +114,7 @@ h3 {
   font-size: 3em;
   line-height: 1;
 }
-h2{
+h2 {
   font-size: 2em;
 }
 h2.link {
@@ -124,7 +127,8 @@ h2.link a {
 h3 {
   font-size: 1.5em;
 }
-p, figure {
+p,
+figure {
   margin: 1em 0;
 }
 svg {
