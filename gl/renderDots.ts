@@ -8,22 +8,16 @@ export const render = (
   { attribs, stride, indices, vertices }: Dots,
   { hasDPCB, zoom = 1 }: { hasDPCB: boolean, zoom?: number },
 ) => {
-  const renderer = {
-    zoom: (x: number) => {
-      zoom = x;
-      raf();
-    },
-  };
   const pro = gl.createProgram();
-  if (!pro) return renderer;
+  if (!pro) return;
   const vao = gl.createVertexArray();
-  if (!vao) return renderer;
+  if (!vao) return;
   const vBuf = gl.createBuffer();
-  if (!vBuf) return renderer;
+  if (!vBuf) return;
   const iBuf = gl.createBuffer();
-  if (!iBuf) return renderer;
+  if (!iBuf) return;
   const uBuf = gl.createBuffer();
-  if (!uBuf) return renderer;
+  if (!uBuf) return;
 
   const shaderCompiler = (
     g: WebGL2RenderingContext,
@@ -46,21 +40,23 @@ export const render = (
   const uniforms = new Float32Array([width, height, zoom, 0]);
   const {
     TRIANGLES: tri,
-    STATIC_DRAW: sd,
     DYNAMIC_DRAW: dd,
     ARRAY_BUFFER: gla,
     UNIFORM_BUFFER: glu,
     ELEMENT_ARRAY_BUFFER: gli,
     UNSIGNED_INT: indexType,
   } = gl;
-  gl.bindBuffer(gla, vBuf);
-  gl.bufferData(gla, new Float32Array(vertices), sd);
-  gl.bindBuffer(gla, null);
+  const updateVertices = (vertices: number[]) => {
+    gl.bindBuffer(gla, vBuf);
+    gl.bufferData(gla, new Float32Array(vertices), dd);
+    gl.bindBuffer(gla, null);
+  };
+  updateVertices(vertices);
   gl.bindBuffer(gli, iBuf);
-  gl.bufferData(gli, new Uint32Array(indices), sd);
+  gl.bufferData(gli, new Uint32Array(indices), dd);
   gl.bindBuffer(gli, null);
   gl.bindBufferBase(glu, ubo, uBuf);
-  gl.bufferData(glu, uniforms, sd);
+  gl.bufferData(glu, uniforms, dd);
   gl.bindBuffer(glu, null);
 
   const enableAttribs = (
@@ -151,5 +147,14 @@ export const render = (
       raf();
     })).observe(ca);
   
-    return renderer;
+    return {
+      updateVertices: (x: number[]) => {
+        updateVertices(x);
+        raf();
+      },
+      zoom: (x: number) => {
+        zoom = x;
+        raf();
+      },
+    };
 } 

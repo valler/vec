@@ -1,6 +1,10 @@
 import { vecsToDots } from "../../lib/js/dot2.js";
 import { render } from "../../gl/renderDots.js";
 import { basis, slerpFromTo, sMul } from "../../lib/js/vec2.js";
+import { isVec as isVec3 } from "../../lib/js/vec3.js";
+import { isVec as isVec4 } from "../../lib/js/vec4.js";
+import { vecFromCSSRGBA } from "../../lib/js/utils.js";
+const darkTheme = matchMedia("(prefers-color-scheme: dark)");
 const hasDevicePixelContentBox = async () => {
     try {
         return await new Promise((resolve) => {
@@ -32,21 +36,63 @@ if (canvas instanceof HTMLCanvasElement) {
         const [right, top] = basis;
         const halfRight = sMul(right, .5);
         const halfTop = sMul(top, .5);
+        const arc = slerpFromTo(halfRight, halfTop, 6);
+        const dotSize = .05;
+        const createDots = (darkTheme) => {
+            const { color: colorString } = getComputedStyle(canvas);
+            const unknownColor = vecFromCSSRGBA(colorString);
+            let color;
+            if (isVec4(unknownColor)) {
+                const [r, g, b, a] = unknownColor;
+                color = [
+                    r / 255,
+                    g / 255,
+                    b / 255,
+                    a,
+                ];
+            }
+            else if (isVec3(unknownColor)) {
+                const [r, g, b] = unknownColor;
+                color = [
+                    r / 255,
+                    g / 255,
+                    b / 255,
+                    1,
+                ];
+            }
+            else if (darkTheme.matches) {
+                color = [1, 1, 1, 1];
+            }
+            else {
+                color = [0, 0, 0, 0];
+            }
+            return vecsToDots(arc, dotSize, ...color);
+        };
         const args = [
             canvas,
             gl,
             vertexShader,
             fragmentShader,
-            vecsToDots(slerpFromTo(halfRight, halfTop, 6), .05, 1, 1, 1, 1),
+            createDots(darkTheme),
         ];
+        let renderer;
         if (range instanceof HTMLInputElement) {
-            const { zoom } = render(...args, { hasDPCB, zoom: range.valueAsNumber });
-            range.addEventListener("change", () => {
-                zoom(range.valueAsNumber);
-            });
+            renderer = render(...args, { hasDPCB, zoom: range.valueAsNumber });
+            if (renderer) {
+                const { zoom } = renderer;
+                range.addEventListener("change", () => {
+                    zoom(range.valueAsNumber);
+                });
+            }
         }
         else {
-            render(...args, { hasDPCB });
+            renderer = render(...args, { hasDPCB });
+        }
+        if (renderer) {
+            const { updateVertices } = renderer;
+            darkTheme.addEventListener("change", (e) => {
+                updateVertices(createDots(e).vertices);
+            });
         }
     }
 }

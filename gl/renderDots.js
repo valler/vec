@@ -1,25 +1,19 @@
 export const render = (ca, gl, vs, fs, { attribs, stride, indices, vertices }, { hasDPCB, zoom = 1 }) => {
-    const renderer = {
-        zoom: (x) => {
-            zoom = x;
-            raf();
-        },
-    };
     const pro = gl.createProgram();
     if (!pro)
-        return renderer;
+        return;
     const vao = gl.createVertexArray();
     if (!vao)
-        return renderer;
+        return;
     const vBuf = gl.createBuffer();
     if (!vBuf)
-        return renderer;
+        return;
     const iBuf = gl.createBuffer();
     if (!iBuf)
-        return renderer;
+        return;
     const uBuf = gl.createBuffer();
     if (!uBuf)
-        return renderer;
+        return;
     const shaderCompiler = (g, p) => (type, s) => {
         const sh = g.createShader(type);
         if (!sh)
@@ -36,15 +30,18 @@ export const render = (ca, gl, vs, fs, { attribs, stride, indices, vertices }, {
     let height = ca.clientHeight;
     const ubo = 0;
     const uniforms = new Float32Array([width, height, zoom, 0]);
-    const { TRIANGLES: tri, STATIC_DRAW: sd, DYNAMIC_DRAW: dd, ARRAY_BUFFER: gla, UNIFORM_BUFFER: glu, ELEMENT_ARRAY_BUFFER: gli, UNSIGNED_INT: indexType, } = gl;
-    gl.bindBuffer(gla, vBuf);
-    gl.bufferData(gla, new Float32Array(vertices), sd);
-    gl.bindBuffer(gla, null);
+    const { TRIANGLES: tri, DYNAMIC_DRAW: dd, ARRAY_BUFFER: gla, UNIFORM_BUFFER: glu, ELEMENT_ARRAY_BUFFER: gli, UNSIGNED_INT: indexType, } = gl;
+    const updateVertices = (vertices) => {
+        gl.bindBuffer(gla, vBuf);
+        gl.bufferData(gla, new Float32Array(vertices), dd);
+        gl.bindBuffer(gla, null);
+    };
+    updateVertices(vertices);
     gl.bindBuffer(gli, iBuf);
-    gl.bufferData(gli, new Uint32Array(indices), sd);
+    gl.bufferData(gli, new Uint32Array(indices), dd);
     gl.bindBuffer(gli, null);
     gl.bindBufferBase(glu, ubo, uBuf);
-    gl.bufferData(glu, uniforms, sd);
+    gl.bufferData(glu, uniforms, dd);
     gl.bindBuffer(glu, null);
     const enableAttribs = (gl, p, vao, vBuf, attribs, stride, glType, glSize) => {
         gl.bindVertexArray(vao);
@@ -110,6 +107,15 @@ export const render = (ca, gl, vs, fs, { attribs, stride, indices, vertices }, {
             height = round(ca.clientHeight * devicePixelRatio);
             raf();
         })).observe(ca);
-    return renderer;
+    return {
+        updateVertices: (x) => {
+            updateVertices(x);
+            raf();
+        },
+        zoom: (x) => {
+            zoom = x;
+            raf();
+        },
+    };
 };
 //# sourceMappingURL=renderDots.js.map
