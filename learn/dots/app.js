@@ -21,7 +21,7 @@ if (canvas instanceof HTMLCanvasElement) {
     const gl = canvas.getContext("webgl2");
     if (gl) {
         const base = import.meta.url
-            .replace(/app.js$/, "../../gl/renderPoints.js");
+            .replace(/app.js$/, "../../gl/");
         const fetchShader = (x) => fetch(new URL(`${x}.glsl`, base))
             .then((x) => x.text());
         const [vertexShader, fragmentShader, hasDPCB,] = await Promise.all([
