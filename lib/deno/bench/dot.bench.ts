@@ -40,7 +40,7 @@ bench("Dot3 C", { group: "dot 3D" }, () => {
   dot3C(v3A, v3B);
 });
 
-export const dot4B = (
+const dot4B = (
   [a, b, c, d]: v,
   [e, f, g, h]: v,
 ) => a * e + b * f + c * g + d * h;
