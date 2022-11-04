@@ -21,11 +21,11 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#vectors">Vectors</a>
     </header>
     <main>
       <h1>Reduction</h1>
-      <p>
+      <p class="em-code">
         <span>You can reduce vector coefficients to a number.</span>
         <span>The function <code>coefSum</code> returns the sum of the coefficients.</span>
         <span>The function <code>coefPro</code> returns the product of the coefficients.</span>
@@ -34,10 +34,10 @@
       <figure>
         <figcaption>Example coefficient sum:</figcaption>
         <code class="lines">
-          <span>import { coefSum, vec } from "vec";</span>
+          <span>import { coefSum, set } from "vec";</span>
           <span>export default coefSum(</span>
           <span class="indent-1">
-            <span>vec(1, 2, 3, 4, 5)</span>
+            <span>set(1, 2, 3, 4, 5)</span>
           </span>
           <span>) === 1 + 2 + 3 + 4 + 5;</span>
         </code>
@@ -45,10 +45,10 @@
       </figure>
         <figcaption>Example coefficient product:</figcaption>
         <code class="lines">
-          <span>import { coefPro, vec } from "vec";</span>
+          <span>import { coefPro, set } from "vec";</span>
           <span>export default coefPro(</span>
           <span class="indent-1">
-            <span>vec(1, 2, 3, 4, 5)</span>
+            <span>set(1, 2, 3, 4, 5)</span>
           </span>
           <span>) === 1 * 2 * 3 * 4 * 5;</span>
         </code>

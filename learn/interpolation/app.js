@@ -1,8 +1,8 @@
-import { vec, lerp, slerp } from "../../lib/js/vec2.js";
+import { set, lerp, slerp } from "../../lib/js/vec2.js";
 const d = document;
 const [c0, c1, c2, c3] = d.querySelectorAll("#svg circle");
 const r = d.querySelector("#ranges input[type='range']");
-const getPos = (c) => vec(c.cx.baseVal.value, c.cy.baseVal.value);
+const getPos = (c) => set(c.cx.baseVal.value, c.cy.baseVal.value);
 const setPos = (c, [x, y]) => {
     c.cx.baseVal.value = x;
     c.cy.baseVal.value = y;

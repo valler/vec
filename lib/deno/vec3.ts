@@ -5,11 +5,11 @@ const { pow: nPow, sqrt, sin, acos } = Math;
 export const zero: v = [0, 0, 0];
 export const one: v = [1, 1, 1];
 export const basis: m = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
-export const vec = (a: n, b: n, c: n): v => [a, b, c];
+export const set = (a: n, b: n, c: n): v => [a, b, c];
 export const sca = (s: n): v => [s, s, s];
 export const isEqual = ([a, b, c]: v, [d, e, f]: v) =>
   a === d && b === e && c === f;
-export const isVec = (x: unknown[]): x is v =>
+export const isValid = (x: unknown[]): x is v =>
   x.length === 3 && x.every((x) => Number.isFinite(x));
 export const id = ([a, b, c]: v): v => [a, b, c];
 export const neg = ([a, b, c]: v): v => [-a, -b, -c];

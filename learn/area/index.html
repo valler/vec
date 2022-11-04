@@ -20,11 +20,11 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#vectors">Vectors</a>
     </header>
     <main>
       <h1>Area</h1>
-      <p>
+      <p class="em-code">
         <span>The function <code>area</code> returns the area spanned by two vectors.</span>
         <span>That is the area of a parallelogram,</span>
         <span>twice the area of a triangle.</span>
@@ -32,9 +32,9 @@
       <figure>
         <figcaption>Example area:</figcaption>
         <code class="lines">
-          <span>import { isEqual, area, vec, refl } from "vec3";</span>
-          <span>const a = vec(3, 4, 5);</span>
-          <span>const b = vec(6, 7, 8);</span>
+          <span>import { isEqual, area, set, refl } from "vec3";</span>
+          <span>const a = set(3, 4, 5);</span>
+          <span>const b = set(6, 7, 8);</span>
           <span>const n = dir(a);</span>
           <span>export default isEqual(</span>
           <span class="indent-1">

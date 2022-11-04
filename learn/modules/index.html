@@ -8,6 +8,7 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <link rel="stylesheet" href="../../base.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
   <link rel="preload" href="../../font/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf" as="font" crossorigin="">
   <link rel="icon" href="../../icon.svg" type="image/svg+xml">
@@ -20,23 +21,16 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#general">General</a>
     </header>
     <main>
       <h1>Modules</h1>
-      <p>
-        <span>Focus on four modules:</span>
-        <span><code>vec</code>, <code>vec2</code>, <code>vec3</code>, and <code>vec4</code>.</span>
-        <span>Start at the root of the repo.</span>
-        <span>Enter the lib.</span>
+      <p class="lines">
+        <span>Start at the root of the repo and enter the lib.</span>
         <span>Choose between Deno, TypeScript, and JavaScript.</span>
-        <span>The module <code>vec</code> is the most general.</span>
-        <span>It has no upper limit on the number of dimensions.</span>
-        <span>The others represent different subspaces.</span>
-        <span>The interfaces are similar, but differ where it makes sense.</span>
       </p>
       <figure>
-        <figcaption>Example paths to the module <code>vec2</code>:</figcaption>
+        <figcaption class="em-code">Example paths to the <code>vec2</code> module:</figcaption>
         <code class="lines">
           <span>./lib/deno/vec2.ts</span>
           <span>./lib/js/vec2.ts</span>
@@ -44,43 +38,58 @@
         </code>
       </figure>
       <figure>
-        <figcaption>General example:</figcaption>
-        <code class="lines">
-          <span>import { add, zero, one } from "vec";</span>
-          <span>const d = 9; // (dimensions)</span>
-          <span>export default add(zero(d), one(d));</span>
-        </code>
-      </figure>
-      <figure>
-        <figcaption>Two-dimensional example:</figcaption>
+        <figcaption>Usage example:</figcaption>
         <code class="lines">
           <span>import { add, zero, one } from "vec2";</span>
-          <span>export default add(zero, one);</span>
-        </code>
-      </figure>
-      <figure>
-        <figcaption>Three-dimensional example:</figcaption>
-        <code class="lines">
-          <span>import { add, zero, one } from "vec3";</span>
-          <span>export default add(zero, one);</span>
-        </code>
-      </figure>
-      <figure>
-        <figcaption>Four-dimensional example:</figcaption>
-        <code class="lines">
-          <span>import { add, zero, one } from "vec4";</span>
           <span>export default add(zero, one);</span>
         </code>
       </figure>
       <p class="lines">
         <span>Note:</span>
         <span>Module syntax varies across environments.</span>
-        <span>The examples use bare paths as an abstraction.</span>
+        <span>The example uses a bare path as an abstraction.</span>
       </p>
     </main>
+    <section>
+      <h2 class="link"><a id="vector" href="#vector">Vector</a></h2>
+      <ul>
+        <li>vec</li>
+        <li>vec2</li>
+        <li>vec3</li>
+        <li>vec4</li>
+      </ul>
+      <p class="pad em-code">
+        <span>The module <code>vec</code> is the most general.</span>
+        <span>It has no upper limit on the number of dimensions.</span>
+        <span>The others represent different subspaces.</span>
+        <span>The interfaces are similar, but differ where it makes sense.</span>
+      </p>
+      <p class="link"><a href="../#vectors">See: Vectors</a></p>
+    </section>
+    <section>
+      <h2 class="link"><a id="dot" href="#dot">Dot</a></h2>
+      <ul>
+        <li>dot2</li>
+      </ul>
+      <p class="link"><a href="../dots/">See: Dots</a></p>
+    </section>
+    <section>
+      <h2 class="link"><a id="line" href="#line">Line</a></h2>
+      <ul>
+        <li>line2</li>
+      </ul>
+      <p class="link"><a href="../lines/">See: Lines</a></p>
+    </section>
+    <section>
+      <h2 class="link"><a id="utils" href="#utils">Utils</a></h2>
+      <ul>
+        <li>utils</li>
+      </ul>
+      <p class="link"><a href="../utils/">See: Utils</a></p>
+    </section>
     <nav>
       <ul>
-        <li><a href="../equality/">Equality</a></li>
+        <li><a href="../#general">General</a></li>
       </ul>
     </nav>
     <footer>

@@ -12,7 +12,7 @@ import {
   dot,
   id,
   isEqual,
-  isVec,
+  isValid,
   len,
   lerp,
   lerpFromTo,
@@ -30,6 +30,7 @@ import {
   sAdd,
   sca,
   sDiv,
+  set,
   slerp,
   slerpFromTo,
   sMad,
@@ -40,7 +41,6 @@ import {
   sSub,
   sub,
   sum,
-  vec,
   zero,
 } from "./vec.ts";
 
@@ -83,9 +83,9 @@ test("basis", () => {
   ]);
 });
 
-test("vec", () => {
+test("set", () => {
   assertEquals(
-    vec(3, 4, 5, 6, 7, 8),
+    set(3, 4, 5, 6, 7, 8),
     sum(
       sMul(e0, 3),
       sMul(e1, 4),
@@ -106,12 +106,12 @@ test("isEqual", () => {
   assertEquals(isEqual(v, o), false);
 });
 
-test("isVec", () => {
-  assertEquals(isVec([]), false);
-  assertEquals(isVec([NaN]), false);
-  assertEquals(isVec([Infinity]), false);
-  assertEquals(isVec(["a"]), false);
-  assertEquals(isVec(o), true);
+test("isValid", () => {
+  assertEquals(isValid([]), false);
+  assertEquals(isValid([NaN]), false);
+  assertEquals(isValid([Infinity]), false);
+  assertEquals(isValid(["a"]), false);
+  assertEquals(isValid(o), true);
 });
 
 test("id", () => {
@@ -145,15 +145,15 @@ test("mul", () => {
 
 test("div", () => {
   assertEquals(
-    div(vec(18, 15, 12, 9, 6, 3), v3),
-    vec(6, 5, 4, 3, 2, 1),
+    div(set(18, 15, 12, 9, 6, 3), v3),
+    set(6, 5, 4, 3, 2, 1),
   );
 });
 
 test("pow", () => {
   assertEquals(
-    pow(vec(1, 2, 3, 4, 5, 6), vec(1, 2, 3, 4, 5, 6)),
-    vec(1, 4, 27, 256, 3125, 46656),
+    pow(set(1, 2, 3, 4, 5, 6), set(1, 2, 3, 4, 5, 6)),
+    set(1, 4, 27, 256, 3125, 46656),
   );
 });
 
@@ -299,11 +299,11 @@ test("area", () => {
 
   assertEquals(area(e0, add(e0, e1)), 1);
 
-  assertEquals(area(vec(1), vec(2)), 0);
+  assertEquals(area(set(1), set(2)), 0);
   assertEquals(
     area(
-      vec(3, 4, 12, 84, 0),
-      vec(3, 4, 12, 84, 2),
+      set(3, 4, 12, 84, 0),
+      set(3, 4, 12, 84, 2),
     ),
     170,
   );
@@ -317,10 +317,10 @@ test("sum", () => {
 });
 
 test("pro", () => {
-  const a = vec(0, 1, 2, 1, 1, 1);
-  const b = vec(1, 1, 1, 3, 1, 1);
-  const c = vec(1, 1, 1, 1, 4, 1);
-  const d = vec(1, 1, 1, 1, 1, 5);
+  const a = set(0, 1, 2, 1, 1, 1);
+  const b = set(1, 1, 1, 3, 1, 1);
+  const c = set(1, 1, 1, 1, 4, 1);
+  const d = set(1, 1, 1, 1, 1, 5);
   assertEquals(
     pro(a, b, c, d),
     mul(mul(mul(a, b), c), d),
@@ -329,18 +329,18 @@ test("pro", () => {
 
 test("coefSum", () => {
   assertEquals(
-    coefSum(vec(3, 4, 5, 6, 7, 8)),
+    coefSum(set(3, 4, 5, 6, 7, 8)),
     3 + 4 + 5 + 6 + 7 + 8,
   );
 });
 
 test("coefPro", () => {
   assertEquals(
-    coefPro(vec(3, 4, 5, 6, 7, 8)),
+    coefPro(set(3, 4, 5, 6, 7, 8)),
     3 * 4 * 5 * 6 * 7 * 8,
   );
   assertEquals(
-    coefPro(vec(0, 4, 5, 6, 7, 8)),
+    coefPro(set(0, 4, 5, 6, 7, 8)),
     0,
   );
 });

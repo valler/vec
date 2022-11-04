@@ -1,5 +1,5 @@
 import type { v } from "../../lib/js/vec2.js";
-import { vec, add } from "../../lib/js/vec2.js";
+import { set, add } from "../../lib/js/vec2.js";
 const [c0, c1, c2] = document.querySelectorAll("#svg circle");
 const ranges = document.querySelectorAll("#ranges input[type='range']");
 const [ r0, r1, r2, r3 ] = ranges;
@@ -17,11 +17,11 @@ const hasQueried = true &&
   r3 instanceof HTMLInputElement;
 if (hasQueried) {
   const update = () => {
-    const a = vec(
+    const a = set(
       r0.valueAsNumber,
       r1.valueAsNumber,
     );
-    const b = vec(
+    const b = set(
       r2.valueAsNumber,
       r3.valueAsNumber,
     );

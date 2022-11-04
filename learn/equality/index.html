@@ -20,20 +20,18 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#vectors">Vectors</a>
     </header>
     <main>
       <h1>Equality</h1>
-      <p>
+      <p class="em-code">
         <span>The predicate <code>isEqual</code> checks whether two vectors are equal.</span>
         <span>If a vector is equal to another it can be replaced by the other without changing the result.</span>
-        <span>The function is a helper to illustrate the concept of equality or identity in examples.</span>
-        <span>It is not meant to replace a type checker or testing framework.</span>
       </p>
       <figure>
         <figcaption>Example equality of standard basis vectors:</figcaption>
         <code class="lines">  
-          <span>import { isEqual, vec, basis } from "vec3";</span>
+          <span>import { isEqual, basis } from "vec3";</span>
           <span>const [e0, e1, e2] =  basis;</span>
           <span>export default [</span>
           <span class="indent-1">
@@ -47,7 +45,7 @@
       <figure>
         <figcaption>Example distinction of standard basis vectors:</figcaption>
         <code class="lines">  
-          <span>import { isEqual, vec, basis } from "vec3";</span>
+          <span>import { isEqual, basis } from "vec3";</span>
           <span>const [e0, e1, e2] =  basis;</span>
           <span>export default [</span>
           <span class="indent-1">
@@ -61,14 +59,14 @@
       <figure>
         <figcaption>Example coefficients of the standard basis:</figcaption>
         <code class="lines">  
-          <span>import { isEqual, vec, basis } from "vec4";</span>
+          <span>import { isEqual, set, basis } from "vec4";</span>
           <span>const [e0, e1, e2, e3] = basis;</span>
           <span>export [</span>
           <span class="indent-1">
-            <span>isEqual(e0, vec(1, 0, 0, 0),</span>
-            <span>isEqual(e1, vec(0, 1, 0, 0),</span>
-            <span>isEqual(e2, vec(0, 0, 1, 0),</span>
-            <span>isEqual(e3, vec(0, 0, 0, 1),</span>
+            <span>isEqual(e0, set(1, 0, 0, 0),</span>
+            <span>isEqual(e1, set(0, 1, 0, 0),</span>
+            <span>isEqual(e2, set(0, 0, 1, 0),</span>
+            <span>isEqual(e3, set(0, 0, 0, 1),</span>
           </span>
           <span>];</span>
         </code>
@@ -76,6 +74,7 @@
     </main>
     <nav>
       <ul>
+        <li><a href="../predicates/">Predicates</a></li>
         <li><a href="../composition/">Composition</a></li>
       </ul>
     </nav>

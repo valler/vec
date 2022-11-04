@@ -14,11 +14,11 @@ export const basis = (d: n): m => {
   }
   return o;
 };
-export const vec = (...a: v): v => a;
+export const set = (...a: v): v => a;
 export const sca = (d: n) => (a: n): v => new Array(d).fill(a);
 export const isEqual = (a: v, b: v) =>
   a.reduce((x, y, i) => x && y === b[i], true);
-export const isVec = (x: unknown[]): x is v =>
+export const isValid = (x: unknown[]): x is v =>
   x.length > 0 && x.every((x) => Number.isFinite(x));
 export const id = (a: v): v => [...a];
 export const neg = (a: v) => {

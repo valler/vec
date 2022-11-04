@@ -10,11 +10,11 @@ export const basis: m = [
   [0, 0, 1, 0],
   [0, 0, 0, 1],
 ];
-export const vec = (a: n, b: n, c: n, d: n): v => [a, b, c, d];
+export const set = (a: n, b: n, c: n, d: n): v => [a, b, c, d];
 export const sca = (s: n): v => [s, s, s, s];
 export const isEqual = ([a, b, c, d]: v, [e, f, g, h]: v) =>
   a === e && b === f && c === g && d === h;
-export const isVec = (x: unknown[]): x is v =>
+export const isValid = (x: unknown[]): x is v =>
   x.length === 4 && x.every((x) => Number.isFinite(x));
 export const id = ([a, b, c, d]: v): v => [a, b, c, d];
 export const neg = ([a, b, c, d]: v): v => [-a, -b, -c, -d];

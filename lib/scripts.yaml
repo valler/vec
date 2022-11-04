@@ -3,7 +3,7 @@ scripts:
     desc: Generate test coverage report
     cmd:
       - rm -rf cov/
-      - deno test --coverage=cov/json
+      - deno test --coverage=cov/json --allow-read
       - deno coverage cov/json --lcov --output=cov/cov.lcov
       - genhtml -o cov/html cov/cov.lcov
   dnt:

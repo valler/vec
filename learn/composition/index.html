@@ -22,7 +22,7 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#vectors">Vectors</a>
     </header>
     <main>
       <h1>Composition</h1>
@@ -39,12 +39,12 @@
         <input type="range" value="-10" min="-30" max="30">
         <input type="range" value="-30" min="-30" max="30">
       </form>
-      <p>
+      <p class="em-code">
         <span>Every vector can be expressed as a linear combination of a basis.</span>
         <span>The standard basis for a space is given by <code>basis</code>.</span>
         <span>It is constant for the modules with a predefined space.</span>
         <span>In general you have to provide the number of dimensions.</span>
-        <span>The function <code>vec</code> creates a vector.</span>
+        <span>The function <code>set</code> creates a vector.</span>
         <span>The function <code>add</code> performs vector addition.</span>
         <span>The function <code>sum</code> is the varyadic equivalent.</span>
         <span>The function <code>sMul</code> implements scalar multiplication.</span>
@@ -60,7 +60,7 @@
       <p>These are the identifiers described here:</p>
       <ul id="identifiers">
         <li><code>basis</code></li>
-        <li><code>vec</code></li>
+        <li><code>set</code></li>
         <li><code>sca</code></li>
         <li><code>zero</code></li>
         <li><code>one</code></li>
@@ -94,32 +94,32 @@
       <figure>
         <figcaption>Example two-dimensional vector:</figcaption>
         <code class="lines">
-          <span>import { vec } from "vec2";</span>
-          <span>export default vec(4, 5);</span>
+          <span>import { set } from "vec2";</span>
+          <span>export default set(4, 5);</span>
         </code>
       </figure>
       <figure>
         <figcaption>Example four-dimensional vector:</figcaption>
         <code class="lines">
-          <span>import { vec } from "vec4";</span>
-          <span>export default vec(2, 3, 4, 5);</span>
+          <span>import { set } from "vec4";</span>
+          <span>export default set(2, 3, 4, 5);</span>
         </code>
       </figure>
       <figure>
         <figcaption>Example vector:</figcaption>
         <code class="lines">
-          <span>import { vec } from "vec";</span>
-          <span>export default vec(6, 5, 3, 8, 9);</span>
+          <span>import { set } from "vec";</span>
+          <span>export default set(6, 5, 3, 8, 9);</span>
         </code>
       </figure>
       <figure>
         <figcaption>Example composition:</figcaption>
         <code class="lines">
-          <span>import { isEqual, vec, sum, sMul, basis } from "vec3";</span>
+          <span>import { isEqual, set, sum, sMul, basis } from "vec3";</span>
           <span>const [e0, e1, e2] = basis;</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
-            <span>vec(2, 3, 4),</span>
+            <span>set(2, 3, 4),</span>
             <span>sum(</span>
             <span class="indent-1">
               <span>sMul(e0, 2),</span>
@@ -134,16 +134,16 @@
       <figure>
         <figcaption>Example addition:</figcaption>
         <code class="lines">
-          <span>import { isEqual, add, vec } from "vec";</span>
+          <span>import { isEqual, add, set } from "vec";</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
             <span>add(</span>
             <span class="indent-1">
-              <span>vec(3, 6, 5),</span>
-              <span>vec(4, 2, 9),</span>
+              <span>set(3, 6, 5),</span>
+              <span>set(4, 2, 9),</span>
             </span>
             <span>),</span>
-            <span>vec(</span>
+            <span>set(</span>
             <span class="indent-1">
               <span>3 + 4,</span>
               <span>6 + 2,</span>
@@ -170,8 +170,8 @@
       <figure>
         <figcaption>Example sum of equal terms:</figcaption>
         <code class="lines">
-          <span>import { isEqual, sum, vec } from "vec";</span>
-          <span>const v = vec(1);</span>
+          <span>import { isEqual, sum, set } from "vec";</span>
+          <span>const v = set(1);</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
             <span>sMul(v, 4),</span>
@@ -183,11 +183,11 @@
       <figure>
         <figcaption>Example scalar multiplication:</figcaption>
         <code class="lines">
-          <span>import { isEqual, sMul, vec } from "vec";</span>
+          <span>import { isEqual, sMul, set } from "vec";</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
-            <span>sMul(vec(3, 4, 5), 2),</span>
-            <span>vec(3 * 2, 4 * 2, 5 * 2),</span>
+            <span>sMul(set(3, 4, 5), 2),</span>
+            <span>set(3 * 2, 4 * 2, 5 * 2),</span>
           </span>
           <span>);</span>
         </code>
@@ -273,11 +273,11 @@
       <figure>
         <figcaption>Example componentwise multiplication:</figcaption>
         <code class="lines">
-          <span>import { isEqual, mul, sMul, basis, vec, one } from "vec3";</span>
+          <span>import { isEqual, mul, sMul, basis, set, one } from "vec3";</span>
           <span>const [e0, e1, e2] = basis;</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
-            <span>mul(one, vec(2, 3, 4)),</span>
+          <span>mul(one, set(2, 3, 4)),</span>
             <span>sum(</span>
             <span class="indent-1">
               <span>sMul(e0, 2),</span>
@@ -314,7 +314,7 @@
         <figcaption>Example product of equal terms:</figcaption>
         <code class="lines">
           <span>import { isEqual, sPow, pro } from "vec3";</span>
-          <span>const v = vec(3, 4, 5);</span>
+          <span>const v = set(3, 4, 5);</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
             <span>sPow(v, 5),</span>
@@ -330,7 +330,7 @@
           <span>const [e0, e1, e2] = basis;</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
-            <span>pow(vec(3, 4, 5), vec(5, 3, 2),</span>
+            <span>pow(set(3, 4, 5), set(5, 3, 2),</span>
             <span>sum(</span>
             <span class="indent-1">
               <span>sPow(sMul(e0, 3), 5),</span>
@@ -345,10 +345,10 @@
       <figure>
         <figcaption>Example mad:</figcaption>
         <code class="lines">
-          <span>import { isEqual, mad, mul, add, vec } from "vec2";</span>
-          <span>const v = vec(3, 4);</span>
-          <span>const m = vec(5, 6);</span>
-          <span>const a = vec(1, 2);</span>
+          <span>import { isEqual, mad, mul, add, set } from "vec2";</span>
+          <span>const v = set(3, 4);</span>
+          <span>const m = set(5, 6);</span>
+          <span>const a = set(1, 2);</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
             <span>mad(v, m, a),</span>
@@ -360,8 +360,8 @@
       <figure>
         <figcaption>Example scalar mad:</figcaption>
         <code class="lines">
-          <span>import { isEqual, sMad, sMul, sAdd, vec } from "vec2";</span>
-          <span>const v = vec(3, 4);</span>
+          <span>import { isEqual, sMad, sMul, sAdd, set } from "vec2";</span>
+          <span>const v = set(3, 4);</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
             <span>sMad(v, 2, 1),</span>

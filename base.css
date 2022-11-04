@@ -38,6 +38,10 @@ html {
     --bg: #000;
   }
 }
+canvas.print {
+  color: #000;
+}
+
 body {
   background-color: var(--bg);
   color: var(--col);
@@ -61,7 +65,7 @@ footer {
 }
 header,
 main,
-.wrap > section,
+section,
 nav,
 footer {
   margin-left: auto;
@@ -71,6 +75,7 @@ footer {
   max-width: 40em;
 }
 header,
+section,
 nav,
 footer {
   padding: 0.5em;
@@ -78,7 +83,7 @@ footer {
 nav h2 {
   padding: 0.25em;
 }
-:is(header, nav, footer) ul {
+:is(header, section, nav, footer) ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -131,6 +136,13 @@ p,
 figure {
   margin: 1em 0;
 }
+p.pad,
+p.link a {
+  padding: 0.5em;
+}
+p.link a {
+  border-radius: 0.5em;
+}
 svg {
   display: grid;
 }
@@ -139,6 +151,9 @@ figure svg {
 }
 code {
   font-family: mono, monospace;
+}
+.em-code code {
+  font-size: 0.875em;
 }
 .icon {
   width: 6em;
@@ -151,10 +166,20 @@ code {
   display: grid;
   margin-left: 1em;
 }
-.ranges {
+.ranges,
+.ranges fieldset {
   display: grid;
   gap: 1em;
 }
+.ranges fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.ranges legend {
+  padding: 0;
+}
+
 input[type="range"] {
   -webkit-appearance: none; /* Samsung */
   appearance: none;

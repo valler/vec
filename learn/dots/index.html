@@ -30,18 +30,28 @@
         <canvas id="canvas"></canvas>
       </figure>
       <form id="ranges" class="ranges">
-        <input type="range" value="1" min="0" max="2" step=".01">
+        <fieldset>
+          <legend>View</legend>
+          <label for="pan-x">Pan X</label>
+          <input id="pan-x" type="range" value="0" min="-1" max="1" step=".01">
+          <label for="pan-y">Pan Y</label>
+          <input id="pan-y" type="range" value="0" min="-1" max="1" step=".01">
+          <label for="zoom">Zoom</label>
+          <input id="zoom" type="range" value="1" min="0" max="1" step=".01">
+        </fieldset>
       </form>
-      <p>
+      <p class="em-code">
         <span>Dots are an easy way to get started with rendering.</span>
         <span>A dot has a position, size and color.</span>
+        <span>The function <code>set</code> creates a dot.</span>
+        <span>The function <code>fromArray</code> joins individual dots.</span>
       </p>
       <figure>
         <figcaption>Example dot:</figcaption>
         <code class="lines">
           <span>import { zero as center } from "vec2";</span>
           <span>import { one as white } from "vec4";</span>
-          <span>import { dot } from "dot2";</span>
+          <span>import { set as dot } from "dot2";</span>
           <span>const size = 1;</span>
           <span>export default dot(...center, size, ...white);</span>
         </code>
@@ -51,38 +61,49 @@
         <code class="lines">
           <span>import { neg, basis, zero as center } from "vec2";</span>
           <span>import { one as white } from "vec4";</span>
-          <span>import { dot, dots } from "dot2";</span>
+          <span>import { set, fromArray } from "dot2";</span>
           <span>const size = 1;</span>
           <span>const [right, top] = basis;</span>
           <span>const left = neg(right);</span>
           <span>const bottom = neg(top);</span>
-          <span>export default dots(</span>
+          <span>export default fromArray([</span>
           <span class="indent-1">
-            <span>dot(...center, size, ...white),</span>
-            <span>dot(...top, size, ...white),</span>
-            <span>dot(...right, size, ...white),</span>
-            <span>dot(...bottom, size, ...white),</span>
-            <span>dot(...left, size, ...white),</span>
+            <span>set(...center, size, ...white),</span>
+            <span>set(...top, size, ...white),</span>
+            <span>set(...right, size, ...white),</span>
+            <span>set(...bottom, size, ...white),</span>
+            <span>set(...left, size, ...white),</span>
           </span>
-          <span>);</span>
+          <span>]);</span>
         </code>
       </figure>
       <figure>
-        <figcaption>Example vetors to dots:</figcaption>
+        <figcaption>Example joining dots:</figcaption>
         <code class="lines">
-          <span>import { vecsToDots } from "dot2";</span>
+          <span>import { set, fromArray, join } from "dot2";</span>
+          <span>const a = set(0, 0, 0, 0, 0, 0, 0);</span>
+          <span>const b = set(1, 1, 1, 1, 1, 1, 1);</span>
+          <span>const c = fromArray([a, b]);</span>
+          <span>export default(join(c, c));</span>
+        </code>
+      </figure>
+      <figure>
+        <figcaption>Example dots from vectors:</figcaption>
+        <code class="lines">
+          <span>import { fromVecs } from "dot2";</span>
           <span>import { slerpFromTo, basis } from "vec2";</span>
           <span>import { one as white } from "vec4";</span>
           <span>const [right, top] = basis;</span>
           <span>const arc = slerpFromTo(right, top, 6);</span>
           <span>const small = 0.05;</span>
-          <span>export default vecsToDots(arc, small, ...white);</span>
+          <span>export default fromVecs(arc, small, ...white);</span>
         </code>
       </figure>
     </main>
     <nav>
       <ul>
-        <li><a href="../">Rendering</a></li>
+        <li><a href="../modules/#dot">Modules</a></li>
+        <li><a href="../#rendering">Rendering</a></li>
       </ul>
     </nav>
     <footer>

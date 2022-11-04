@@ -20,11 +20,11 @@
 <body>
   <div class="wrap">
     <header>
-      <a href="../">Learn</a>
+      <a href="../#vectors">Vectors</a>
     </header>
     <main>
       <h1>Inverse</h1>
-      <p>
+      <p class="em-code">
         <span>Negation returns the additive inverse of a vector.</span>
         <span>Subtraction reverses addition.</span>
         <span>Scalar division yields the inverse under scalar multiplication, except for zero.</span>
@@ -84,10 +84,10 @@
       <figure>
         <figcaption>Example inverse of componentwise multiplication:</figcaption>
         <code class="lines">  
-          <span>import { isEqual, div, mul, vec } from "vec3";</span>
+          <span>import { isEqual, div, mul, set } from "vec3";</span>
           <span>export default isEqual(</span>
           <span class="indent-1">
-            <span>div(vec(3, 4, 5), vec(3, 4, 5)),</span>
+            <span>div(set(3, 4, 5), set(3, 4, 5)),</span>
             <span>one,</span>
           </span>
           <span>);</span>
