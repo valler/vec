@@ -211,3 +211,10 @@ input[type="range"]::-moz-range-thumb {
 input[type="range"]:focus-visible {
   background: var(--bg);
 }
+hr {
+  display: grid;
+  width: 100%;
+  border: 1px solid;
+  border-radius: 1px;
+  margin: 0.5em auto;
+}

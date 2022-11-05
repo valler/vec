@@ -9,12 +9,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <link rel="stylesheet" href="../../base.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../../app/repl/style.css">
   <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
   <link rel="preload" href="../../font/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf" as="font" crossorigin="">
   <link rel="icon" href="../../icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../icon192.png">
   <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
   <script src="../../app.js" type="module"></script>
+  <script src="app.js" type="module"></script>
   <title>Modules</title>
 </head>
 
@@ -50,6 +52,16 @@
         <span>The example uses a bare path as an abstraction.</span>
       </p>
     </main>
+    <section>
+      <h2 class="link"><a id="live-example" href="#live-example">Live Example</a></h2>
+      <form class="repl" id="repl-0">
+        <code class="input" contenteditable="" id="repl-i-0">import { add, zero, one } from "https://valler.github.io/vec/lib/js/vec2.js";
+export default add(zero, one);</code>
+        <hr>
+        <output for="repl-i-0" id="repl-o-0"></output>
+        <output for="repl-i-0" id="repl-e-0"></output>
+      </form>
+    </section>
     <section>
       <h2 class="link"><a id="vector" href="#vector">Vector</a></h2>
       <ul>

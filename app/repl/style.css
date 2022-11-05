@@ -1,0 +1,30 @@
+.repl,
+.repl :is(.input, output, script.eval) {
+  display: grid;
+  width: 100%;
+}
+.repl {
+  gap: 1em;
+}
+.repl .input {
+  margin: 0;
+  border-radius: 0.5em;
+  border: 0;
+  resize: none;
+  font-size: 1em;
+  background: var(--bg);
+  color: var(--col);
+}
+.repl :is(.input, output) {
+  overflow: auto;
+  white-space: pre-wrap;
+  padding: 0.5em;
+  font-family: 'mono', monospace;
+}
+.repl output:empty {
+  display: none;
+}
+.repl hr {
+  max-width: 2em;
+  margin: 0;
+}
