@@ -6,7 +6,7 @@
   "display": "standalone",
   "background_color": "#000",
   "theme_color": "#000",
-  "description": "vector math library for the web",
+  "description": "vectors for the web",
   "icons": [
     {
       "src": "icon192.png",
