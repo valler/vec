@@ -57,6 +57,7 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
     let { zoom = 1 } = options || {};
     let panX = 0;
     let panY = 0;
+    let roll = 0;
     const [vs, fs, geo, hasDPCB] = await Promise.all([
         vertexShaderSource,
         fragmentShaderSource,
@@ -81,7 +82,7 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
     compileShader(gl.FRAGMENT_SHADER, fs);
     gl.linkProgram(pro);
     const ubo = 0;
-    const uniforms = new Float32Array([width, height, panX, panY, zoom, 0, 0, 0]);
+    const uniforms = new Float32Array([width, height, panX, panY, roll, zoom, 0, 0]);
     const { TRIANGLES: tri, DYNAMIC_DRAW: dd, ARRAY_BUFFER: gla, UNIFORM_BUFFER: glu, ELEMENT_ARRAY_BUFFER: gli, UNSIGNED_INT: indexType, } = gl;
     updateVertices(gl, vBuf, vertices);
     gl.bindBuffer(gli, iBuf);
@@ -107,7 +108,8 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
         uniforms[1] = height;
         uniforms[2] = panX;
         uniforms[3] = panY;
-        uniforms[4] = zoom;
+        uniforms[4] = roll;
+        uniforms[5] = zoom;
         gl.viewport(0, 0, width, height);
         gl.clear(clearValue);
         gl.useProgram(pro);
@@ -122,6 +124,9 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
         gl.bindBuffer(gla, null);
         gl.bindVertexArray(null);
         gl.useProgram(null);
+        // Workaround Chrome fullscreen bug.
+        // Canvas would not render the second frame, sometimes multiple frames.
+        document.documentElement.style.backgroundColor = getComputedStyle(document.body).backgroundColor;
     };
     const raf = () => {
         if (isRendering)
@@ -132,8 +137,6 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
     let themeChangeListeners;
     const colorScheme = matchMedia("(prefers-color-scheme: dark)");
     colorScheme.addEventListener("change", (e) => {
-        console.log(1, "theme change is dark", e.matches);
-        console.log(1, "el color", getElementColor(ca));
         for (const f of themeChangeListeners) {
             f(getElementColor(ca));
         }
@@ -156,12 +159,12 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
         renderPrint();
     });
     return {
+        onThemeChange: (x) => {
+            themeChangeListeners = x;
+        },
         updateVertices: (x) => {
             updateVertices(gl, vBuf, x);
             raf();
-        },
-        onThemeChange: (x) => {
-            themeChangeListeners = x;
         },
         panX: (x) => {
             panX = x;
@@ -169,6 +172,10 @@ export const draw = async (ca, vertexShaderSource, fragmentShaderSource, geometr
         },
         panY: (x) => {
             panY = x;
+            raf();
+        },
+        roll: (x) => {
+            roll = x;
             raf();
         },
         zoom: (x) => {

@@ -30,6 +30,6 @@ if (hasQueried) {
     setPos(c2, add(a, b));
   }
   for (const r of ranges) {
-    r.addEventListener("change", update);
+    r.addEventListener("input", update);
   }
 }

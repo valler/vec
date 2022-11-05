@@ -3,6 +3,7 @@ precision highp float;
 uniform Uniforms{
   vec2 res;
   vec2 pan;
+  float roll;
   float zoom;
 };
 in vec4 vCol;

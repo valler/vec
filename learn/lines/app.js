@@ -23,25 +23,34 @@ const d = document;
     }
     const { onThemeChange, updateVertices } = renderer;
     onThemeChange([(color) => updateVertices(geo(color).vertices)]);
+    const van = "valueAsNumber";
     const inputZoom = d.getElementById("zoom");
-    if (inputZoom instanceof HTMLInputElement && inputZoom.type === "range") {
+    if (inputZoom instanceof HTMLInputElement && van in inputZoom) {
         const { zoom } = renderer;
-        inputZoom.addEventListener("change", () => {
+        inputZoom.addEventListener("input", () => {
             zoom(inputZoom.valueAsNumber);
         });
     }
     const inputPanX = d.getElementById("pan-x");
-    if (inputPanX instanceof HTMLInputElement && inputPanX.type === "range") {
+    if (inputPanX instanceof HTMLInputElement && van in inputPanX) {
         const { panX } = renderer;
-        inputPanX.addEventListener("change", () => {
+        inputPanX.addEventListener("input", () => {
             panX(inputPanX.valueAsNumber);
         });
     }
     const inputPanY = d.getElementById("pan-y");
-    if (inputPanY instanceof HTMLInputElement && inputPanY.type === "range") {
+    if (inputPanY instanceof HTMLInputElement && van in inputPanY) {
         const { panY } = renderer;
-        inputPanY.addEventListener("change", () => {
+        inputPanY.addEventListener("input", () => {
             panY(inputPanY.valueAsNumber);
+        });
+    }
+    const inputRoll = d.getElementById("roll");
+    if (inputRoll instanceof HTMLInputElement && van in inputRoll) {
+        const { roll } = renderer;
+        const { PI } = Math;
+        inputRoll.addEventListener("input", () => {
+            roll(inputRoll.valueAsNumber * PI);
         });
     }
 })();

@@ -2,6 +2,7 @@
 uniform Uniforms{
   vec2 res;
   vec2 pan;
+  float roll;
   float zoom;
 };
 in vec4 pos;
@@ -9,6 +10,10 @@ in float size;
 in vec4 col;
 out vec4 vCol;
 out vec4 vUV;
+vec2 view(vec2 p){
+  p=reflect(reflect(p,vec2(1,0)),vec2(cos(roll),sin(roll)))*vec2(res.y/res.x,1)*zoom;
+  return p+pan;
+}
 void main(){
   vCol=col;
   vec2 uv=vec2(ivec2(gl_VertexID%2,gl_VertexID/2%2));
@@ -25,7 +30,6 @@ void main(){
   float l=lv+h;
   vUV=vec4(uv,l,h);
   vec2 p=vec2(l,h)*uv-vec2(r);
-  p=reflect(reflect(p,n0),n2)+c1+pan;
-  p*=vec2(res.y/res.x,1)*zoom;
-  gl_Position=vec4(p,0,1);
+  p=reflect(reflect(p,n0),n2)+c1;
+  gl_Position=vec4(view(p),0,1);
 }

@@ -16,7 +16,7 @@ const hasQueried = true &&
 if (hasQueried) {
     const a = getPos(c0);
     const b = getPos(c1);
-    r.addEventListener("change", () => {
+    r.addEventListener("input", () => {
         const t = r.valueAsNumber;
         setPos(c2, lerp(a, b, t));
         setPos(c3, slerp(a, b, t));

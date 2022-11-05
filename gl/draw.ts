@@ -80,6 +80,7 @@ export const draw = async (
   let { zoom = 1 } = options || {};
   let panX = 0;
   let panY = 0;
+  let roll = 0;
 
   const [vs, fs, geo, hasDPCB] = await Promise.all([
     vertexShaderSource,
@@ -107,7 +108,7 @@ export const draw = async (
   compileShader(gl.FRAGMENT_SHADER, fs);
   gl.linkProgram(pro);
   const ubo = 0;
-  const uniforms = new Float32Array([width, height, panX, panY, zoom, 0, 0, 0]);
+  const uniforms = new Float32Array([width, height, panX, panY, roll, zoom, 0, 0]);
   const {
     TRIANGLES: tri,
     DYNAMIC_DRAW: dd,
@@ -157,7 +158,8 @@ export const draw = async (
     uniforms[1] = height;
     uniforms[2] = panX;
     uniforms[3] = panY;
-    uniforms[4] = zoom;
+    uniforms[4] = roll;
+    uniforms[5] = zoom;
     gl.viewport(0, 0, width, height);
     gl.clear(clearValue);
     gl.useProgram(pro);
@@ -172,6 +174,10 @@ export const draw = async (
     gl.bindBuffer(gla, null);
     gl.bindVertexArray(null);
     gl.useProgram(null);
+    
+    // Workaround Chrome fullscreen bug.
+    // Canvas would not render the second frame, sometimes multiple frames.
+    document.documentElement.style.backgroundColor = getComputedStyle(document.body).backgroundColor;
   }
   const raf = () => {
     if (isRendering) return;
@@ -183,8 +189,6 @@ export const draw = async (
   let themeChangeListeners: themeChangeListener[];
   const colorScheme = matchMedia("(prefers-color-scheme: dark)");
   colorScheme.addEventListener("change", (e) => {
-    console.log(1, "theme change is dark", e.matches);
-    console.log(1, "el color", getElementColor(ca));
     for (const f of themeChangeListeners) {
       f(getElementColor(ca));
     }
@@ -206,15 +210,15 @@ export const draw = async (
   addEventListener("afterprint", () => {
     ca.classList.remove("print");
     renderPrint();
-  })
+  });
 
   return {
+    onThemeChange: (x: themeChangeListener[]) => {
+      themeChangeListeners = x;
+    },
     updateVertices: (x: number[]) => {
       updateVertices(gl, vBuf, x);
       raf();
-    },
-    onThemeChange: (x: themeChangeListener[]) => {
-      themeChangeListeners = x;
     },
     panX: (x: number) => {
       panX = x;
@@ -222,6 +226,10 @@ export const draw = async (
     },
     panY: (x: number) => {
       panY = x;
+      raf();
+    },
+    roll: (x: number) => {
+      roll = x;
       raf();
     },
     zoom: (x: number) => {
