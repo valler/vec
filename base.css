@@ -136,7 +136,7 @@ p,
 figure {
   margin: 1em 0;
 }
-p.pad,
+.pad,
 p.link a {
   padding: 0.5em;
 }

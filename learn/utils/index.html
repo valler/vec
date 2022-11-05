@@ -8,11 +8,13 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <link rel="stylesheet" href="../../base.css">
+  <link rel="stylesheet" href="../../app/repl/style.css">
   <link rel="preload" href="../../font/Source_Sans_3/SourceSans3-VariableFont_wght.ttf" as="font" crossorigin="">
   <link rel="icon" href="../../icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../../icon192.png">
   <link rel="manifest" href="../../app.webmanifest" crossorigin="use-credentials">
   <script src="../../app.js" type="module"></script>
+  <script src="app.js" type="module"></script>
   <title>Utils</title>
 </head>
 
@@ -24,6 +26,61 @@
     <main>
       <h1>Utils</h1>
     </main>
+    <section>
+      <h2 class="link"><a href="#fetching%20text">Fetching text</a></h2>
+      <p class="em-code pad">
+        <span>The function <code>fetchShader</code> is a thin wrapper around <code>fetch</code>.</span>
+        <span>The chosen interface suites fetching shaders, because they often come in pairs.</span>
+        <span>It simply fetches text.</span>
+      </p>
+      <figure class="pad">
+        <figcaption class="em-code">Example fetching text with the <code>fetchShader</code> function:</figcaption>
+        <form class="repl unpad" id="repl-0">
+          <code class="input" contenteditable="" id="repl-i-0">
+            <span><span>import { fetchShader } from</span> <span>"https://valler.github.io/vec/lib/js/utils.js";</span></span>
+            <span>const text = await fetchShader(</span>
+            <span class="indent-1">
+              <span>"README.md",</span>
+              <span>"https://valler.github.io/vec/",</span>
+            </span>
+            <span>);</span>
+            <span>export default /vectors for the web/.test(text);</span>
+          </code>
+          <hr>
+          <output for="repl-i-0" id="repl-o-0"></output>
+          <output for="repl-i-0" id="repl-e-0"></output>
+        </form>
+      </figure>
+    </section>
+    <section>
+      <h2 class="link"><a href="#Casting%20CSS%20color%20functions" id="Casting%20CSS%20color%20functions">Casting CSS color functions</a></h2>
+      <p class="em-code pad">
+        <span>The function <code>vecFromCSSRGBA</code> takes a CSS <code>rgb</code> or <code>rgba</code> string as an argument.</span>
+        <span>It returns an Array of three or four floats.</span>
+      </p>
+      <figure class="pad">
+        <figcaption class="em-code">Example parsing CSS <code>rgba</code> color function:</figcaption>
+        <form class="repl unpad" id="repl-1">
+          <code class="input" contenteditable="" id="repl-i-1">
+            <span><span>import { vecFromCSSRGBA } from</span> <span>"https://valler.github.io/vec/lib/js/utils.js";</span></span>
+            <span>export default vecFromCSSRGBA(</span>
+            <span class="indent-1">
+              <span>"rgba(128, 128, 128, 0.5)"</span>
+            </span>
+            <span>);</span>
+          </code>
+          <hr>
+          <output for="repl-i-1" id="repl-o-1"></output>
+          <output for="repl-i-1" id="repl-e-1"></output>
+        </form>
+      </figure>
+    </section>
+    <nav>
+      <ul>
+        <li><a href="../#general">General</a></li>
+        <li><a href="../modules/">Modules</a></li>
+      </ul>
+    </nav>
     <footer>
       <ul>
         <li><a href="../../impressum/">Impressum</a></li>

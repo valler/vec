@@ -16,3 +16,15 @@ const repl = ({ input, output, error }: {
   });
 };
 export default repl;
+
+const d = document;
+type id = string;
+export  const initRepl = (...[i, o, e]: [i: id, o: id, e: id]) => {
+  const input = d.getElementById(i);
+  if (!input) return;
+  const output = d.getElementById(o);
+  if (!(output instanceof HTMLOutputElement)) return;
+  const error = d.getElementById(e);
+  if (!(error instanceof HTMLOutputElement)) return;
+  repl({ input, output, error });  
+};

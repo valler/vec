@@ -4,7 +4,12 @@
   width: 100%;
 }
 .repl {
+  margin: 0.5em 0;
   gap: 1em;
+}
+.repl.unpad {
+  margin-left: -0.5em;
+  margin-right: -0.5em;
 }
 .repl .input {
   margin: 0;
